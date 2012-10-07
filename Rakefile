@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "cradle"
   gem.homepage = "http://github.com/davidrichards/cradle"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{An application to store any information about the open source community.}
+  gem.description = %Q{This is a carefully designed application that should allow me to plugin data sources, databases, and any kind of algorithm without making things too difficult.  I wanted an application that could take a lot of the repetitive tedium away from my demonstration scripts.}
   gem.email = "davidlamontrichards@gmail.com"
   gem.authors = ["David Richards"]
   # dependencies defined in Gemfile
