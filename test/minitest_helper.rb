@@ -10,6 +10,7 @@ end
 
 require 'minitest/autorun'
 require 'minitest/rg'
+require "mocha"
 
 $LOAD_PATH << File.expand_path('..', __FILE__)
 

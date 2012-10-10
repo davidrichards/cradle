@@ -13,4 +13,5 @@ group :development do
   gem 'autotest-fsevent'
   gem 'autotest-growl'
   gem 'pry'
+  gem "mocha", :require => false
 end
