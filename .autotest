@@ -1,0 +1,6 @@
+require "autotest/bundler"
+require "autotest/restart"
+require 'autotest/fsevent'
+require 'autotest/growl'
+
+require "minitest/rg"
