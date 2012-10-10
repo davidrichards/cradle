@@ -1,5 +1,6 @@
 require_relative '../minitest_helper'
 require 'entity'
+require 'person'
 
 include Cradle
 
@@ -31,8 +32,53 @@ describe Entity do
       subject.associations.must_equal({})
     end
     
+    it "defaults the entries hash inside the associations to arrays" do
+      subject.associations[:any][:thing].must_equal []
+    end
+    
     it "defaults a has entry to another hash" do
       subject.associations[:person_ids].must_equal({})
+    end
+    
+    it "can add_association with another entity" do
+      person = Person.new(name: "Person")
+      subject.add_association(person, "predicate")
+      associations = subject.associations["person_entries"]
+      id = associations.keys.first
+      predicates = associations[id]
+      id.must_equal person.id
+      predicates.must_equal ["predicate"]
+    end
+    
+    it "can add more than one predicate at a time" do
+      person = Person.new(name: "Person")
+      subject.add_association(person, "author", "speaker")
+      subject.associations["person_entries"][person.id].must_equal %w(author speaker)
+    end
+    
+    it "can remove an association" do
+      person = Person.new(name: "Person")
+      subject.add_association(person, "author", "speaker")
+      subject.remove_association(person, "author")
+      subject.associations["person_entries"][person.id].must_equal %w(speaker)
+    end
+    
+    it "can remove all associations with another entity" do
+      person = Person.new(name: "Person")
+      subject.add_association(person, "author", "speaker")
+      subject.remove_associations(person)
+      subject.associations["person_entries"][person.id].must_equal []
+    end
+    
+    it "has a shortcut for the entity type associations" do
+      person = Person.new(name: "Person")
+      subject.add_association(person, "author")
+      subject.person_entries.must_equal subject.associations["person_entries"]
+      subject.concept_entries.must_equal({})
+      subject.event_entries.must_equal({})
+      subject.organization_entries.must_equal({})
+      subject.project_entries.must_equal({})
+      subject.publication_entries.must_equal({})
     end
     
   end # associations
@@ -63,6 +109,14 @@ describe Entity do
       hsh = {name: "Panda"}
       subject = Entity.hydrate(hsh)
       subject.name.must_equal "Panda"
+    end
+    
+    it "serializes associations" do
+      person = Person.new(:name => "Author")
+      subject.add_association(person, "author")
+      json = subject.to_json
+      subject2 = Entity.from_json(json)
+      subject2.associations["person_entries"][person.id].must_equal ["author"]
     end
   end # JSON
 end
