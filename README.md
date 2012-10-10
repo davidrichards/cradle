@@ -1,10 +1,10 @@
 Cradle
 ======
 
-This is the beginning of it all, an application that can manage 
-people, events, projects and publications.  It is meant to have
-a limited domain, but unlimited uses.  Basically, I want to have
-a central data repository where I can demonstrate all things data:
+This is the beginning of it all, an application that can manage people, events, projects, 
+organization and publications.  It is meant to have a limited domain, but many uses.  
+Basically, I want to have a central data repository where I can demonstrate 
+all things data:
 
 * Big Data or Small Data
 * Predictive Analytics
@@ -14,12 +14,19 @@ a central data repository where I can demonstrate all things data:
 * NoSQL, Relational or Semantic Data Bases
 * Data Reification
 
-At first, I made fun of [Uncle Bob's keynote at Midwest](http://bit.ly/Q4zLlN).
-I decided I'd try his ideas out before I went public, marking him as a 
-fanatic.  Well, I tried the ideas out, to the best of my understanding,
-and I actually like what he showed us.  I'm shocked.  More importantly,
-I have a massively-configurable application that can help me keep
-my data demonstrations focused.
+The idea, then, is to separate concerns with this little gem.  Have the basic entities
+store information.  Create an interface where I can implement a database.  That lets
+me plug a database in to a project.  Also create an interface so that I can plug in
+a user experience (a web app, a command line interface, a Hypermedia API, whatever).
+
+The performance on this shouldn't suck, but that's not why I'm writing this.  I'm 
+writing this so I can demonstrate a concept without having to write a bunch of 
+code to store the data, or connect my data storage to my classifiers, or whatever.
+Also, theoretically, I should be able to take my demonstration scripts and run them
+in different environments to prepare those environments for demonstration as well.
+
+So, in a nutshell, this is a tool primarily to make demonstration easier.  It may
+add flexibility in your own data features as well.
 
 Copyright
 ---------
