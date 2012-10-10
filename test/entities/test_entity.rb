@@ -88,6 +88,16 @@ describe Entity do
       subject.name = "Joe Entity"
       subject.as_json.must_equal({name: "Joe Entity"})
     end
+    
+    it "aliases to_hash to as_json (for regular people to understand)" do
+      subject.name = "A Name"
+      subject.to_hash.must_equal subject.as_json
+    end
+    
+    it "uses the hash version for inspect (it's easier to read)" do
+      subject.name = "A Name"
+      subject.inspect.must_equal subject.as_json.inspect
+    end
   
     it "serializes the attributes into JSON" do
       subject.name = "Joe Entity"

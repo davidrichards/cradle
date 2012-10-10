@@ -51,6 +51,11 @@ class Cradle::Entity < OpenStruct
   def as_json(*args)
     @table
   end
+  alias :to_hash :as_json
+  
+  def inspect
+    to_hash.inspect
+  end
   
   def self.from_json(string)
     hydrate JSON(string)

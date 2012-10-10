@@ -12,8 +12,5 @@ require 'minitest/autorun'
 require 'minitest/rg'
 
 $LOAD_PATH << File.expand_path('..', __FILE__)
-$LOAD_PATH << File.expand_path('../../lib', __FILE__)
-$LOAD_PATH << File.expand_path('../../lib/entities', __FILE__)
-$LOAD_PATH << File.expand_path('../../lib/interactors', __FILE__)
 
 require 'cradle'

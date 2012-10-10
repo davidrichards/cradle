@@ -6,7 +6,7 @@ include Cradle
 
 describe "List" do
   before do
-    EList = Cradle.List(Entity)
+    EList = Cradle.List(Entity) unless defined?(EList)
   end
 
   subject do
