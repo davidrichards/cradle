@@ -40,4 +40,14 @@ describe BasicRepository do
     end
   end # save
 
+  describe "filter" do
+    it "uses FilterEntities to find entities" do
+      interactor = mock()
+      interactor.expects(:execute!).returns(:result)
+      hash = {}
+      FilterEntities.expects(:new).with(hash).returns(interactor)
+      subject.filter(hash).must_equal(:result)
+    end
+  end # save
+
 end
