@@ -1,6 +1,7 @@
 require 'database_boundary'
 require 'find_entity_by_id'
 require 'save_entity'
+require 'filter_entities'
 
 module Cradle
   class BasicRepository < DatabaseBoundary
@@ -16,6 +17,11 @@ module Cradle
     
     def save(entity)
       interactor = SaveEntity.new(entity)
+      interactor.execute!
+    end
+
+    def filter(query)
+      interactor = FilterEntities.new(query)
       interactor.execute!
     end
     
